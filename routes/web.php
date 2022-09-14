@@ -1,7 +1,5 @@
 <?php
 
-use App\Models\Student;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,14 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    //return view('welcome');
-    // RAW
-    //$students = DB::select('select * from students');
-
-    // Query Builder
-    //$students = DB::table('students')->select(['name', 'email'])->get();
-
-    // Eloquent
-    $students = Student::all();
-    dd($students);
+    return view('welcome');
 });
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';
